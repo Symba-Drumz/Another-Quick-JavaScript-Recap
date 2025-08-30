@@ -4,36 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
     <title>Document</title>
   </head>
   <body>
-    <h1>Welcome to the JavaScript Recap</h1>
-    <p>This is a simple HTML document to demonstrate JavaScript integration.</p>
+    <h1 id="firsthead">Welcome to the Vanilla  JavaScript Recap</h1>
+    <p>This is a simple HTML  document to demonstrate JavaScript integration. CSS has also been incorporated for styling.</p>
 
      <header>
-      <h1>JS For Beginners</h1>
+      <h1 id="title">JS For Beginners</h1>
     </header>
 
     <section class="container">
       <form id="my-form">
-        <h1>Add User</h1>
+        <h1 id="form-title">Add User</h1>
         <div class="msg"></div>
         <div>
           <label for="name">Name:</label>
-          <input type="text" id="name">
+          <input type="text" id="name" required>
         </div>
         <div>
           <label for="email">Email:</label>
-          <input type="text" id="email">
+          <input type="text" id="email" required> 
         </div>
-        <input class="btn" type="submit" value="Submit">
+        <button type="submit" class="btn">Submit</button>
       </form>
 
       <ul id="users"></ul>
 
-      <!-- <ul class="items">
+       <!-- <ul class="items">
         <li class="item">Item 1</li>
-        <li class="item">Item 2</li>
+        <li class="item" >Item 2</li>
         <li class="item">Item 3</li>
       </ul> -->
     </section>

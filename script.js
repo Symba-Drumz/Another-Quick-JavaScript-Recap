@@ -460,17 +460,18 @@ console.log(identifyCat(deadCat)); // "Simba is now a dead cat."
 //Function Expressions - functions that are assigned to variables
 const sayHi = function () {
   console.log("Hi there!");
-}
+};
 sayHi(); // "Hi there!"
 
-const sayBye = () => { // using arrow function syntax
+const sayBye = () => {
+  // using arrow function syntax
   console.log("Goodbye!");
-}
+};
 sayBye(); // "Goodbye!"
 
 //CONSTRUCTOR FUNCTIONS - used to create objects with a specific structure.
 //Constructor function without using Class
-function Person(firstName, lastName, dob){
+function Person(firstName, lastName, dob) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.dob = new Date(dob); // date of birth
@@ -485,14 +486,13 @@ function Person(firstName, lastName, dob){
   }*/ // Moved to prototype for better memory efficiency below
   Person.prototype.getFullYear = function () {
     return this.dob.getFullYear();
-  }
+  };
   /*this.userIntro = () => {
     return `My name is ${this.getFullName()}, and I was born in ${this.getFullYear()}.`;
   }*/ // Moved to prototype for better memory efficiency below
   Person.prototype.userIntro = function () {
     return `My name is ${this.getFullName()}, and I was born in ${this.getFullYear()}.`;
-  }
-
+  };
 }
 
 const person1 = new Person("Alfa", "Zach", "1998-06-30");
@@ -501,7 +501,7 @@ const person3 = new Person("Ammi", "Jeff", "2003-04-01");
 console.log(person1.getFullName()); // "Alfa Zach"
 console.log(person1.userIntro()); // "My name is Alfa Zach and I was born in 1998."
 console.log(person2.getFullYear()); // "Ain Moen"
-console.log(person3);//
+console.log(person3); //
 
 //Constructor method Using Class
 class Dog {
@@ -511,14 +511,131 @@ class Dog {
     this.age = age;
   }
   getFullInfo() {
-    return `${this.name} the ${this.breed} is ${this.age} years old.`
+    return `${this.name} the ${this.breed} is ${this.age} years old.`;
   }
 }
-const dog1 = new Dog ("Solo", "German Shepherd", "3");
+const dog1 = new Dog("Solo", "German Shepherd", "3");
 const dog2 = new Dog("Sally", "Rottweiler", "4");
-const dog3 = new Dog("Rex", "Boerboel", "8" );
+const dog3 = new Dog("Rex", "Boerboel", "8");
 
 console.log(dog1);
 console.log(dog1.getFullInfo());
 console.log(dog2.getFullInfo()); // "Sally the Rottweiler is 4 years old."
 console.log(dog3.getFullInfo()); // "Rex the Boerboel is 8 years old."
+
+//THE DOM - Document Object Model
+//The DOM is a representation of the HTML document as a tree structure, where each element is a node in the tree.
+
+//SELECTING ELEMENTS FROM THE DOM;
+//Single Element Selectors
+document.getElementById("my-form"); // Selects an element by its ID
+console.log(document.getElementById("my-form")); // Logs the element with ID "my-form"
+
+document.querySelector(".container"); // Selects the first element with the class "container"
+console.log(document.querySelector(".container")); // Logs the first element with class "container"
+
+document.querySelector("#email");
+console.log(document.querySelector("#email")); // Logs the element with ID "email"
+
+document.querySelector("h1");
+console.log(document.querySelector("h1")); // Logs the first h1 element
+
+document.querySelector("header");
+console.log(document.querySelector("header")); // Logs the header element
+
+//Multiple Element Selectors
+document.querySelectorAll(".item"); // Selects all elements with the class "item"
+console.log(document.querySelectorAll(".item")); // Logs a NodeList of all elements with class. It is preferable to use querySelectorAll over getElementsByClassName as it returns a static NodeList, while getElementsByClassName returns a live HTMLCollection. With a Node-list, you can use array methods like forEach, while with an HTMLCollection, you cannot.
+
+document.getElementsByClassName("item"); // Selects all elements with the class "item"
+console.log(document.getElementsByClassName("item")); // Logs a live HTMLCollection of all
+
+document.getElementsByTagName("li"); // Selects all <li> elements
+console.log(document.getElementsByTagName("li")); // Logs a live HTMLCollection of all
+
+const item = document.querySelectorAll(".item");
+item.forEach((item) => console.log(item)); // Logs each element with the class "item" since querySelectorAll returns a static NodeList, we can use forEach to iterate over it.
+
+//Manipulating the DOM
+/*const ul = document.querySelector(".items"); // Creates a variable to hold the unordered list element
+console.log(document.querySelector(".items")); // Logs the unordered list element
+//ul.remove(); // Removes the unordered list element from the DOM
+//ul.firstElementChild.remove(); // Removes the first child of the unordered list element
+ul.firstElementChild.textContent = "Drummer 1"; // Changes the text content of the first child of the unordered list element
+ul.children[1].textContent = "Drummer 2"; // Changes the text content of the second child of the unordered list element
+ul.lastElementChild.innerHTML = "<h1>Drummer 3</h1>"; // Changes the inner HTML of the last child of the unordered list element
+ul.children[2].innerHTML = "<h3 style='font-family: Michroma;'>Drummer 3</h3>";
+
+ul.firstElementChild.innerHTML =
+  "<h3 style='font-family: Michroma;'>Drummer 3</h3>";
+ul.children[1].innerHTML = "<h3 style='font-family: Michroma;'>Drummer 2</h3>";
+ // Changes the background color of the button element
+/*btn.addEventListener("click", (e) => {
+  alert("Button Clicked!")});*/ // Shows an alert when the button is clicked
+/*btn.addEventListener("mouseover", (e) => {
+  e.preventDefault(); // Prevents the default action of the button
+  btn.style.background = "red"; // Changes the background color of the button element when mouse is over it
+});*/
+const btn = document.querySelector(".btn");
+btn.style.background = "black";
+
+btn.addEventListener("mouseover", (e) => {
+  e.preventDefault();
+  btn.style.background = "blue";
+});
+btn.addEventListener("mouseout", (e) => {
+  e.preventDefault();
+  btn.style.background = "black";
+});
+// Prevents the default action of the button // Changes the background color of the button element when mouse is over it})
+btn.addEventListener("click", (e) => {
+  e.preventDefault(); // Prevents the default action of the button
+
+  onSubmit(e); // Changes the background color of the form element when the button is clicked
+}); // Logs a message to the console when the button is clicked
+
+const formHeader = document.querySelector("#form-title");
+formHeader.style.fontFamily = "Michroma";
+
+formHeader.addEventListener("mouseover", (e) => {
+  e.preventDefault();
+  formHeader.style.color = "#4adef1ff";
+}); // Changes the color of the form header when mouse is over it
+formHeader.addEventListener("mouseout", (e) => {
+  e.preventDefault();
+  formHeader.style.color = "black";
+}); // Changes the color of the form header when mouse is out of it
+
+const myForm = document.querySelector("#my-form");
+const nameInput = document.querySelector("#name");
+const emailInput = document.querySelector("#email");
+const usersList = document.querySelector("#users");
+const msg = document.querySelector(".msg");
+
+myForm.addEventListener("submit", onSubmit);
+
+function onSubmit(e) {
+  e.preventDefault();
+  //console.log(nameInput.value);//
+  if (nameInput.value === "" || emailInput.value === "") {
+    msg.innerHTML = "❌ Please enter all fields!"; // Display error message
+    msg.classList.add("error");
+    msg.classList.remove("success");
+    setTimeout(() => {
+      msg.innerHTML = "";
+      msg.classList.remove("error");
+    }, 3000); // Remove the message after 3 seconds
+  } else {
+    msg.innerHTML = "✅ User added successfully!";
+    msg.classList.remove("error");
+    msg.classList.add("success");
+    setTimeout(() => {
+      msg.innerHTML = "";
+      msg.classList.remove("success");
+    }, 3000);
+
+    // optional: clear fields
+    nameInput.value = "";
+    emailInput.value = "";
+  }
+}
