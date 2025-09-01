@@ -638,11 +638,19 @@ function onSubmit(e) {
     li.appendChild(
       document.createTextNode(`${nameInput.value}: ${emailInput.value}`)
     );
-
-    const deleteBtn = document.createElement("button");
+    //Creating a 'deleButton' element on the DOM
+    const deleteBtn = document.createElement("button");//creates a delete button in memory and not directly on the HTML editor.
     deleteBtn.appendChild(document.createTextNode("❌"));
-    deleteBtn.className = "delete-btn";
-    li.appendChild(deleteBtn);
+    deleteBtn.className = "delete-btn";//added for styling purposes
+    li.appendChild(deleteBtn);//adds the deleteBtn to the li element
+
+    //Deleting the lists within the userList
+    usersList.addEventListener('click', (e) => {
+      if (e.target.classList.contains("delete-btn")) {
+        const li = e.target.parentElement;
+        usersList.removeChild(li);
+      }
+    })
 
     usersList.appendChild(li);
 
