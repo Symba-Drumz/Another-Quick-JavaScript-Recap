@@ -634,6 +634,20 @@ function onSubmit(e) {
       msg.classList.remove("success");
     }, 3000);
 
+    const li = document.createElement("li");
+    li.appendChild(
+      document.createTextNode(`${nameInput.value}: ${emailInput.value}`)
+    );
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.appendChild(document.createTextNode("❌"));
+    deleteBtn.className = "delete-btn";
+    li.appendChild(deleteBtn);
+
+    usersList.appendChild(li);
+
+
+
     // optional: clear fields
     nameInput.value = "";
     emailInput.value = "";
